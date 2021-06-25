@@ -1,24 +1,30 @@
 import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const initialVal = true
+  const [toggleVal, setToggleValue] = useState(initialVal);
+
+  const [favPerson, setFavValue] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>現在の性別は <strong>{toggleVal ? "男" : "女"}</strong> です</p>
+
+      <button onClick={() => setToggleValue(prevState => !prevState)}>
+        転換する
+      </button>
+
+      <button onClick={() => setToggleValue(initialVal)}>
+        リセット
+      </button>
+
+      <p>好きな人は <strong>{favPerson ? "さき" : "LiDAR"}</strong> です</p>
+      <button onClick={() => setFavValue((Math.random() - 0.3)>0 ? true : false) }>
+        占う
+      </button>
+    </>
   );
 }
 
